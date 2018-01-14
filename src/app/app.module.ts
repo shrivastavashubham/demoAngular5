@@ -9,19 +9,26 @@ import {CommonModule} from '@angular/common';
 import{BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import {DataService} from './data.service';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { RestcallComponent } from './restcall/restcall.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    RestcallComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     CommonModule,
     AppRoutingModule, 
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpModule,
+    HttpClientModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
