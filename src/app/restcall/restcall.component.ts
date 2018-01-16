@@ -8,56 +8,61 @@ import {Http} from '@angular/http'
 })
 export class RestcallComponent implements OnInit {
 
-  apiRoot: string = "http://httpbin.org";
+  apiRoot: string = "http://localhost:8080";
   constructor(private http : Http) { }
+ firstName: String="";
+ lastName: String="";
+ age:number;
+ sex:string="";
+ mobile:string;
   body:any;
+  status: String="";
+itemCount: number;
+customers=[];
 
   ngOnInit() {
+    this.countItem()
   }
   doGET() {
     console.log("GET");
-    let url = `${this.apiRoot}/get`;
+    let url = `${this.apiRoot}/showAll`;
     this.http.get(url).subscribe(res => this.responseView(res));
 
   }
+  countItem(){
+    let url = `${this.apiRoot}/showAll`;
+    this.http.get(url).subscribe(res => this.responseView(res));
+    
+  }
 
   responseView(res){
-    console.log(res);
-    console.log(res._body);
+    console.log(JSON.parse(res._body));
+    this.customers=JSON.parse(res._body);
+    
+    
   }
 
   doPOST() {
     console.log("POST");
-  }
-
-  doPUT() {
-    console.log("PUT");
     let url = `${this.apiRoot}/post`;
-   //this.http.post(url,this.body).subscribe(res=>console.log(res));
-    this.http.post(url,this.body).toPromise().then(res=>this.responseView(res)).catch(res=>console.log("error"));
-    console.log("after this");
+    //this.http.post(url,this.body).subscribe(res=>console.log(res));
+    console.log(this.body.shubham);
+     this.http.post(url,this.body).toPromise().then(res=>this.responseView(res)).catch(res=>console.log("error"));
+     console.log("after this");
   }
 
+  addItem(){
+    this.body={
+      "firstName": this.firstName,
+      "lastName": this.lastName,
+      "age": this.age,
+      "sex": this.sex,
+      "mobile": this.mobile
+    }
+    console.log(this.body);
+    let url = `${this.apiRoot}/addCustomer`;
+    this.http.post(url,this.body).subscribe(res=>console.log());
+    this. countItem();
 
-
-
-  doDELETE() {
-    console.log("DELETE");
-  }
-
-  doGETAsPromise() {
-    console.log("GET AS PROMISE");
-  }
-
-  doGETAsPromiseError() {
-    console.log("GET AS PROMISE ERROR");
-  }
-
-  doGETAsObservableError() {
-    console.log("GET AS OBSERVABLE ERROR");
-  }
-
-  doGETWithHeaders() {
-    console.log("GET WITH HEADERS");
   }
 }

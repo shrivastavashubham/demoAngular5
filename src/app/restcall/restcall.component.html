@@ -1,22 +1,23 @@
-<div class="row">
-    <div class="m-t-1">
-      <button class="btn btn-primary" (click)="doGET()">GET</button>
-      <button class="btn btn-primary" (click)="doPOST()">POST</button>
-      <button class="btn btn-primary" (click)="doPUT()">PUT</button>
-      <button class="btn btn-primary" (click)="doDELETE()">DELETE</button>
-    </div>
-  </div>
+<div class="container color-dark">
+    <div class ="col">
+       <p>Add new Customer </p></div>
+       <div class ="col">
+          <p>Existing</p></div>
+      </div>
+      <div class="container color-light" >
+        <div class="col">
+          <p class="sm"> Use this form to add new Customer..</p>
+          <form>
+            <input type="text" class="txt" name="firstName" value="First Name"  [(ngModel)]="firstName"> 
+            <input type="text" class="txt" name="lastName"  value="Last Name" [(ngModel)]="lastName"> 
+            <input type="text" class="txt" name="age" value="age"  [(ngModel)]="age"> 
+            <input type="text" class="txt" name="sex" value="sex"  [(ngModel)]="sex"> 
+            <input type="text" class="txt" name="mobile" value="mobile Number"  [(ngModel)]="mobile"> 
+            <input type="submit" class="btn" value="add Item    " (click)="addItem()">
+          </form>
   
-  <div class="row">
-    <div class="m-t-1">
-      <button class="btn btn-secondary" (click)="doGETAsPromise()">As Promise</button>
-      <button class="btn btn-secondary" (click)="doGETAsPromiseError()">Error as Promise</button>
-      <button class="btn btn-secondary" (click)="doGETAsObservableError()">Error as Observable</button>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="m-t-1">
-      <button class="btn btn-danger" (click)="doGETWithHeaders()">With Headers</button>
-    </div>
-  </div>
+        </div>
+        <div class="col">
+            <p class="life-container" *ngFor="let customer of customers; let i  = index"  > {{customer.firstName}} </p>
+          </div>
+      </div>
