@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Http} from '@angular/http'
-
+import {MatDialog} from '@angular/material';
+import {PopupComponent} from '../popup/popup.component'
 @Component({
   selector: 'app-restcall',
   templateUrl: './restcall.component.html',
@@ -9,7 +10,7 @@ import {Http} from '@angular/http'
 export class RestcallComponent implements OnInit {
 
   apiRoot: string = "http://localhost:8080";
-  constructor(private http : Http) { }
+  constructor(private http : Http, public dialog: MatDialog) { }
  firstName: String="";
  lastName: String="";
  age:number;
@@ -23,12 +24,7 @@ customers=[];
   ngOnInit() {
     this.countItem()
   }
-  doGET() {
-    console.log("GET");
-    let url = `${this.apiRoot}/showAll`;
-    this.http.get(url).subscribe(res => this.responseView(res));
-
-  }
+  
   countItem(){
     this.customers=[];
     let url = `${this.apiRoot}/showAll`;
@@ -43,19 +39,11 @@ customers=[];
     
   }
 
-  doPOST() {
-    console.log("POST");
-    let url = `${this.apiRoot}/post`;
-    //this.http.post(url,this.body).subscribe(res=>console.log(res));
-    console.log(this.body.shubham);
-     this.http.post(url,this.body).toPromise().then(res=>this.responseView(res)).catch(res=>console.log("error"));
-     console.log("after this");
-  }
 
   deleteItem(i){
     console.log(i);
     let url = `${this.apiRoot}/deleteCustomer/${i}`;
-    
+    this.customers=[];
     console.log(url);
     this.http.get(url).subscribe(res=>console.log(res));
     this.countItem();
@@ -69,10 +57,22 @@ customers=[];
       "sex": this.sex,
       "mobile": this.mobile
     }
+    this.customers=[];
     console.log(this.body);
     let url = `${this.apiRoot}/addCustomer`;
     this.http.post(url,this.body).subscribe(res=>console.log());
     this. countItem();
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      height: '150px',
+      width: '100%',
+      
 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {HomeComponent} from './home/home.component';
 import {AboutComponent} from './about/about.component';
 import{RestcallComponent} from './restcall/restcall.component'
-
+import{PopupComponent} from './popup/popup.component'
 
 const routes: Routes=[
     {
@@ -17,6 +17,9 @@ const routes: Routes=[
         path:'rest',
         component: RestcallComponent
 
+    },{
+        path:'popup',
+        component:PopupComponent
     }
    
 ];
@@ -27,5 +30,5 @@ const routes: Routes=[
   export class AppRoutingModule { }
 
 
-}
+
   

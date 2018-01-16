@@ -12,14 +12,19 @@ import {DataService} from './data.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RestcallComponent } from './restcall/restcall.component';
-
-
+import {NgxPopupModule} from 'ngx-popups';
+import {MatSelectModule } from '@angular/material/select'
+import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import{PopupComponent} from './popup/popup.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    RestcallComponent
+    RestcallComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +33,13 @@ import { RestcallComponent } from './restcall/restcall.component';
     AppRoutingModule, 
     BrowserAnimationsModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    MatProgressBarModule,
+MatRadioModule,
+MatDialogModule
   ],
-  providers: [DataService],
+  providers: [DataService,NgxPopupModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
