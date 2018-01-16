@@ -18,6 +18,6 @@
   
         </div>
         <div class="col">
-            <p class="life-container" *ngFor="let customer of customers; let i  = index"  > {{customer.firstName}} </p>
+            <p class="life-container" *ngFor="let customer of customers; let i  = index" (click)="deleteItem(customer.id)" > {{customer.id}} </p>
           </div>
       </div>

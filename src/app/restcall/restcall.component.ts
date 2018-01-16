@@ -30,6 +30,7 @@ customers=[];
 
   }
   countItem(){
+    this.customers=[];
     let url = `${this.apiRoot}/showAll`;
     this.http.get(url).subscribe(res => this.responseView(res));
     
@@ -49,6 +50,15 @@ customers=[];
     console.log(this.body.shubham);
      this.http.post(url,this.body).toPromise().then(res=>this.responseView(res)).catch(res=>console.log("error"));
      console.log("after this");
+  }
+
+  deleteItem(i){
+    console.log(i);
+    let url = `${this.apiRoot}/deleteCustomer/${i}`;
+    
+    console.log(url);
+    this.http.get(url).subscribe(res=>console.log(res));
+    this.countItem();
   }
 
   addItem(){
