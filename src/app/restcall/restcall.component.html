@@ -22,8 +22,8 @@
         </div>
         <div class="col"><br>
           List of Customers
-            <p class="life-container" *ngFor="let customer of customers; let i  = index"  > {{customer.id}} &nbsp;&nbsp;&nbsp;{{customer.firstName}}
-              <button class ="buttonCss" mat-button (click)="openDialog()">Show Details
+            <p class="life-container" *ngFor="let customer of customers; let i  = index"   >  {{customer.id}} &nbsp;&nbsp;&nbsp;{{customer.firstName}}
+              <button class ="buttonCss" mat-button (click)="openDialog(customer.id)">Show Details
   
               </button>
             </p>

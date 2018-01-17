@@ -27,10 +27,7 @@ customers=[];
   }
   dialogClose1:any;
 
- @HostListener('document:click', ['$event'])
-    documentClick(event: MouseEvent) {
-        this.dialogClose1.close();
-    }
+ 
 
   countItem(){
     this.customers=[];
@@ -49,6 +46,7 @@ customers=[];
 
   deleteItem(i){
     console.log(i);
+    console.log(this.customers.find(item=>item.id==i));
     let url = `${this.apiRoot}/deleteCustomer/${i}`;
     this.customers=[];
     console.log(url);
@@ -70,11 +68,18 @@ customers=[];
     this.http.post(url,this.body).subscribe(res=>console.log());
     this. countItem();
   }
-  openDialog() {
+  openDialog(i) {
+    console.log(i);
     const dialogRef = this.dialog.open(PopupComponent, {
       height: '150px',
       disableClose:false,
-     autoFocus:true
+      backdropClass:'' ,
+      hasBackdrop:true,
+     autoFocus:true,
+     
+     data:{
+       name:this.customers.find(item=>item.id==i)
+     }
           });
   this.dialogClose1=dialogRef;
     dialogRef.afterClosed().subscribe(result => {
