@@ -4,7 +4,7 @@
     <div class ="col">
        <p>Add new Customer </p></div>
        <div class ="col">
-          <p>Existing</p></div>
+          <p>Number of Customers</p></div>
       </div>
       <div class="container color-light" >
         <div class="col">
@@ -20,14 +20,16 @@
           </form>
 
         </div>
-        <div class="col">
-            <p class="life-container" *ngFor="let customer of customers; let i  = index"   > {{customer.id}} &nbsp;&nbsp;&nbsp;{{customer.firstName}}
-              <button mat-button (click)="openDialog()">Open dialog
+        <div class="col"><br>
+          List of Customers
+            <p class="life-container" *ngFor="let customer of customers; let i  = index"  > {{customer.id}} &nbsp;&nbsp;&nbsp;{{customer.firstName}}
+              <button class ="buttonCss" mat-button (click)="openDialog()">Show Details
   
               </button>
             </p>
           </div>
-      </div>>
+          
+      </div>
 
               
 

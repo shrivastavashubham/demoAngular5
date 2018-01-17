@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener  } from '@angular/core';
 import {Http} from '@angular/http'
-import {MatDialog} from '@angular/material';
-import {PopupComponent} from '../popup/popup.component'
+
+import {PopupComponent} from '../popup/popup.component';
+import {MatDialog} from '@angular/material'
 @Component({
   selector: 'app-restcall',
   templateUrl: './restcall.component.html',
@@ -24,7 +25,13 @@ customers=[];
   ngOnInit() {
     this.countItem()
   }
-  
+  dialogClose1:any;
+
+ @HostListener('document:click', ['$event'])
+    documentClick(event: MouseEvent) {
+        this.dialogClose1.close();
+    }
+
   countItem(){
     this.customers=[];
     let url = `${this.apiRoot}/showAll`;
@@ -66,11 +73,10 @@ customers=[];
   openDialog() {
     const dialogRef = this.dialog.open(PopupComponent, {
       height: '150px',
-      width: '100%',
-      
-
-    });
-
+      disableClose:false,
+     autoFocus:true
+          });
+  this.dialogClose1=dialogRef;
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
